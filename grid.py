@@ -11,11 +11,10 @@ class Grid:
                      for i in range(self.num_rows)]
         self.colors = Colors.get_cell_colors()
 
-    def print_grid(self):
-        for row in range(self.num_rows):
-            for col in range(self.num_cols):
-                print(self.grid[row][col], end=" ")
-            print()
+    def is_inside(self, row, col):  # 检测一个坐标为(row,col)的方块在不在网格里
+        if row >= self.num_rows or row < 0 or col >= self.num_cols or col < 0:
+            return False
+        return True
 
     def get_cell_color(self):
         dark_grey = (26, 31, 40)

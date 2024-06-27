@@ -27,10 +27,30 @@ class BlockBase:
         self.row_offset += rows
         self.col_offset += cols
 
+    def rotate_clkwise(self):  # 顺时针旋转方块
+        self.rotation_state += 1
+        if self.rotation_state == len(self.cells):
+            self.rotation_state = 0
+
+    def rotate_anticlkwise(self):  # 逆时针旋转方块
+        self.rotation_state -= 1
+        if self.rotation_state == -1:
+            self.rotation_state = len(self.cells) - 1
+
+    def undo_clkwise_rotation(self):  # 旋转后越界 要转回来
+        self.rotation_state -= 1
+        if self.rotation_state == -1:
+            self.rotation_state = len(self.cells) - 1
+
+    def undo_anticlkwise_rotation(self):
+        self.rotation_state += 1
+        if self.rotation_state == len(self.cells):
+            self.rotation_state = 0
+
     def draw(self, screen):
         tiles = self.get_cell_positions()
         for tile in tiles:
-            tile_rect = pygame.Rect(tile.col * self.cell_size + 1,
-                                    tile.row * self.cell_size + 1,
+            tile_rect = pygame.Rect(tile.col * self.cell_size + 11,
+                                    tile.row * self.cell_size + 11,
                                     self.cell_size - 1, self.cell_size - 1)
             pygame.draw.rect(screen, self.color[self.id], tile_rect)

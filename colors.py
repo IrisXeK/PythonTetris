@@ -4,6 +4,7 @@ class Colors:
     red = (232, 18, 18)
     orange = (226, 116, 17)
     yellow = (237, 234, 4)
+    purple = (166, 0, 247)
     cyan = (21, 204, 209)
     blue = (13, 64, 216)
     white = (255, 255, 255)
@@ -12,4 +13,4 @@ class Colors:
 
     @classmethod
     def get_cell_colors(cls):  # 用装饰符直接操控类而不是类的实例,cls指类本身 类比与self self是实例级的,cls是类级的操作
-        return [cls.dark_grey, cls.green, cls.red, cls.orange, cls.yellow, cls.cyan, cls.blue]
+        return [cls.dark_grey, cls.green, cls.red, cls.orange, cls.yellow, cls.purple, cls.cyan, cls.blue]

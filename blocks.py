@@ -13,6 +13,7 @@ class BlockL(BlockBase):
             2: [Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 0)],
             3: [Position(0, 0), Position(0, 1), Position(1, 1), Position(2, 1)],
         }  # 字典的键是旋转的状态 0-3
+        self.move(0, 3)  # 使方块在网格中间生成
 
 
 class BlockJ(BlockBase):
@@ -24,7 +25,7 @@ class BlockJ(BlockBase):
             2: [Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 2)],
             3: [Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1)],
         }
-        self.move(0, 3)  # 使方块在网格中间生成
+        self.move(0, 3)
 
 
 class BlockI(BlockBase):

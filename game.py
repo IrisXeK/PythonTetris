@@ -17,6 +17,8 @@ class Game:
         self.score = 0
         self.rotate_sound_efct = pygame.mixer.Sound("./Sounds/rotate.ogg")
         self.clear_sound_efct = pygame.mixer.Sound("./Sounds/clear.ogg")
+        self.game_over_sound_efct = pygame.mixer.Sound(
+            "./Sounds/game_over.wav")
         pygame.mixer.music.load("./Sounds/bgm.ogg")
         pygame.mixer.music.play(-1)
 
@@ -60,6 +62,8 @@ class Game:
             self.clear_sound_efct.play()
         self.update_score(rows_cleared, 0)
         if self.is_block_fit() == False:  # 新生成的方块不能fit时 即game over
+            pygame.mixer.music.pause()
+            self.game_over_sound_efct.play()
             self.game_over = True
 
     def reset_game(self):
@@ -69,6 +73,7 @@ class Game:
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
         self.score = 0
+        pygame.mixer.music.play(-1)
 
     def is_in_grid(self):  # 检测一个方块在移动或旋转后是否超出边界
         tiles = self.current_block.get_cell_positions()
@@ -85,14 +90,14 @@ class Game:
         return True
 
     def rotate_cur_block_clkwise(self):
-        self.rotate_sound_efct.play()
         self.current_block.rotate_clkwise()
+        self.rotate_sound_efct.play()
         if not self.is_in_grid():
             self.current_block.undo_clkwise_rotation()
 
     def rotate_cur_block_anticlkwise(self):
-        self.rotate_sound_efct.play()
         self.current_block.rotate_anticlkwise()
+        self.rotate_sound_efct.play()
         if not self.is_in_grid():
             self.current_block.undo_anticlkwise_rotation()
 
